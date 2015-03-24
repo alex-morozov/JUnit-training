@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Selenium-tests" verbose="1">	 
+	    <test name="Selenium">	   	    	   	          
+		<groups>
+	        <run>
+	            <include name = "positive"></include>
+	            <include name = "negative"></include>
+	        </run>
+	        <dependencies>
+	            <group name = "negative" depends-on= "positive"></group>
+	        </dependencies>
+	    </groups>	   	          
+		<packages>
+		    <package name = "ru.trainings.tests" />
+		</packages>	
+	</test>
+</suite>
+
+
+
+
