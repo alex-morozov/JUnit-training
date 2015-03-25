@@ -1,20 +1,17 @@
 package ru.trainings.tests;
 
-import org.testng.annotations.Test;
-import org.testng.AssertJUnit;
-import static org.testng.AssertJUnit.assertTrue;
-import org.testng.annotations.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import ru.trainings.common.SeleniumAssertion;
-import ru.trainings.common.TestBase;
+import org.junit.Test;
+import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
+import ru.trainings.common.MyCategories;
+import ru.trainings.common.TestBase;
 
 
-public class TestClass extends TestBase{	 
+public class TestClass extends TestBase implements MyCategories{	 
 		 	  
-	@Test ( groups = ("positive"))
-	public static void LoginOK (){
+	@Test
+	@Category(PositiveTests.class)
+	public void LoginOK (){
 		    driver.findElement(By.linkText("Войти")).click();
 		    driver.findElement(By.name("loginuser")).clear();
 		    driver.findElement(By.name("loginuser")).sendKeys("SeleniumBass");
@@ -24,8 +21,9 @@ public class TestClass extends TestBase{
 		    check.assertDisplayed(driver.findElement(By.cssSelector("div.user-name")));		    
 	}
 	
-	@Test ( groups = ("negative"))
-	public static void LoginWrong (){
+	@Test 
+	@Category({NegativeTests.class, BrokenTests.class})
+	public void LoginWrong (){
 		    driver.findElement(By.linkText("Войти")).click();
 		    driver.findElement(By.name("loginuser")).clear();
 		    driver.findElement(By.name("loginuser")).sendKeys("Wrong");
@@ -35,8 +33,9 @@ public class TestClass extends TestBase{
 		    check.assertDisplayed(driver.findElement(By.name("btnlogin")));
 	}
 	
-	@Test ( groups = ("positive"))
-	public static void showButton (){
+	@Test 
+	@Category(PositiveTests.class)
+	public void showButton (){
 		    driver.findElement(By.linkText("бас-гитары")).click();
 		    check.assertDisplayed(driver.findElement(By.cssSelector("input[type=\"button\"]")));			    
 	}
