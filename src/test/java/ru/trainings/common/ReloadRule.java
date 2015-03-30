@@ -1,10 +1,12 @@
 package ru.trainings.common;
 
 import org.junit.rules.TestRule;
+import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-public class ReloadRule implements TestRule {
+
+public class ReloadRule extends TestWatcher implements TestRule {
 
   @Override
   public Statement apply(Statement base, Description desc) {
@@ -23,10 +25,11 @@ public class ReloadRule implements TestRule {
 
     @Override
     public void evaluate() throws Throwable {
-      try {
+ 
+    	try {
         base.evaluate();
       } catch (Throwable t) {
-        System.out.println("Failed on first attempt: " + desc);
+        System.out.println("Failed on attempt: " + desc);
         base.evaluate();
       }
     }

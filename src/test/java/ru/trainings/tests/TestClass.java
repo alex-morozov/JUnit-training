@@ -5,6 +5,7 @@ import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import ru.trainings.common.MyCategories;
 import ru.trainings.common.TestBase;
+import ru.trainings.common.Unstable;
 
 
 public class TestClass extends TestBase implements MyCategories{	 
@@ -22,7 +23,7 @@ public class TestClass extends TestBase implements MyCategories{
 	}
 	
 	@Test 
-	@Category({NegativeTests.class, BrokenTests.class})
+	@Unstable
 	public void LoginWrong (){
 		    driver.findElement(By.linkText("Войти")).click();
 		    driver.findElement(By.name("loginuser")).clear();
