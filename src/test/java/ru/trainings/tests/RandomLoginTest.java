@@ -7,7 +7,8 @@ import java.util.Random;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
-import org.testng.annotations.DataProvider;
+
+import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import ru.trainings.common.TestBase;

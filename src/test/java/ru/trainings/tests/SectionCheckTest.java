@@ -20,7 +20,7 @@ import ru.trainings.common.TestBase;
 public class SectionCheckTest extends TestBase {
 
 	@DataProvider
-	  public static Iterator<Object[]> loadFromFile() throws IOException {
+	  public static Object[][] loadFromFile() throws IOException {
 	    BufferedReader in = new BufferedReader(new InputStreamReader(
 	        DataProviders.class.getResourceAsStream("/section.data")));
 	    
@@ -33,7 +33,7 @@ public class SectionCheckTest extends TestBase {
 	    
 	    in.close();
 	    
-	    return userData.iterator();
+	    return (Object[][]) userData.toArray(new Object[][]{});
 	  }
 	
 	@Test
