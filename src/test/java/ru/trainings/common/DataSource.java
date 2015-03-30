@@ -7,8 +7,14 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
+public @interface DataSource {
+  
+  public enum Type {
+    RESOURCE,
+    FILE
+  }
 
-public @interface Unstable {
-	
+  String value();
+  Type type();
 
 }

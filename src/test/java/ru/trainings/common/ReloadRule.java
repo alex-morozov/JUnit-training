@@ -6,8 +6,14 @@ import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
 
-public class ReloadRule extends TestWatcher implements TestRule {
 
+public class ReloadRule extends TestWatcher implements TestRule {
+	private WebDriverRule driverRule;
+
+	  public ReloadRule(WebDriverRule driverRule) {
+	    this.driverRule = driverRule;
+	  }
+	  
   @Override
   public Statement apply(Statement base, Description desc) {
     return new ReloadStatement(base, desc);
@@ -24,8 +30,7 @@ public class ReloadRule extends TestWatcher implements TestRule {
     }
 
     @Override
-    public void evaluate() throws Throwable {
- 
+    public void evaluate() throws Throwable { 
     	try {
         base.evaluate();
       } catch (Throwable t) {

@@ -12,8 +12,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
-
 import ru.stqa.selenium.factory.WebDriverFactory;
+
 
 public class WebDriverRule extends TestWatcher implements WebDriver, TakesScreenshot {
   
@@ -35,6 +35,14 @@ public class WebDriverRule extends TestWatcher implements WebDriver, TakesScreen
     System.out.println("Stopping old driver");
     WebDriverFactory.dismissDriver(WebDriverFactory.getDriver(capabilities));
     driver = WebDriverFactory.getDriver(capabilities);
+  }
+  
+ 
+  public void unstableTest (Description description){
+	  if (description.getAnnotation(Unstable.class) != null) {
+	      System.out.println("Restarting a browser");
+	      ((WebDriverRule) driver).startFreshDriver();
+	    }
   }
 
   @Override

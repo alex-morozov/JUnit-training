@@ -13,7 +13,10 @@ import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.java.junit.dataprovider.UseDataProvider;
 import ru.trainings.common.DataProviders;
+import ru.trainings.common.DataSource;
+import static ru.trainings.common.DataSource.Type.*;
 import ru.trainings.common.TestBase;
+import ru.trainings.common.UniversalDataProviders;
 
 
 @RunWith(DataProviderRunner.class)
@@ -37,7 +40,8 @@ public class SectionCheckTest extends TestBase {
 	  }
 	
 	@Test
-	  @UseDataProvider("loadFromFile")
+	@UseDataProvider(value = "dataSourceLoader", location = UniversalDataProviders.class)
+	@DataSource(value = "/section.data", type = RESOURCE)
 	  public void test1(String section) {
 		driver.findElement(By.linkText(section)).click();
 	    check.assertDisplayed(driver.findElement(By.cssSelector("input[type=\"button\"]")));		
